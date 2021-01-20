@@ -19,6 +19,6 @@ namespace CarRental.Entity
         public int isRent { get; set; }
 
         public int CompanyID { get; set; }
-        //public Company Company { get; set; }
+        public Company Company { get; set; }
     }
 }

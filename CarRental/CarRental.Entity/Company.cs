@@ -15,6 +15,6 @@ namespace CarRental.Entity
         public int TotalCars { get; set; }
 
         public List<Car> Cars { get; set; }
-        //public List<Worker> Workers { get; set; }
+        public List<Employee> Employees { get; set; }
     }
 }
