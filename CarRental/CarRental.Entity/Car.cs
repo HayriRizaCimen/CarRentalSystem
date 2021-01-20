@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Entity
 {
-    [Table("Car")]
+    [Table("Cars")]
     public class Car
     {
         public int CarID { get; set; }
@@ -19,6 +19,6 @@ namespace CarRental.Entity
         public int isRent { get; set; }
 
         public int CompanyID { get; set; }
-        public Company Company { get; set; }
+        //public Company Company { get; set; }
     }
 }
