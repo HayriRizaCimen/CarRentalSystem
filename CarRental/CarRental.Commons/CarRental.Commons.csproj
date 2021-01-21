@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F524351-923A-446E-8EE6-7C8B48EEA01D}</ProjectGuid>
+    <ProjectGuid>{F1FD9E8C-B419-4DA4-8C55-E5F55FECC919}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CarRental.DataAcces</RootNamespace>
-    <AssemblyName>CarRental.DataAcces</AssemblyName>
+    <RootNamespace>CarRental.Commons</RootNamespace>
+    <AssemblyName>CarRental.Commons</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -52,25 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\IRepository.cs" />
-    <Compile Include="Concretes\CustomersRepository.cs" />
-    <Compile Include="EntityFramework\DataContext.cs" />
-    <Compile Include="EntityFramework\Initializer.cs" />
+    <Compile Include="Concretes\Data\CsType.cs" />
+    <Compile Include="Concretes\Helpers\DBHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CarRental.Commons\CarRental.Commons.csproj">
-      <Project>{f1fd9e8c-b419-4da4-8c55-e5f55fecc919}</Project>
-      <Name>CarRental.Commons</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CarRental.Entity\CarRental.Entity.csproj">
-      <Project>{99457d30-e2ef-4360-a6a7-1af9a24ae4af}</Project>
-      <Name>CarRental.Entity</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
