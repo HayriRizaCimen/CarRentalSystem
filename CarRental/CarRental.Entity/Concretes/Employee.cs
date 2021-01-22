@@ -24,7 +24,7 @@ namespace CarRental.Entity.Concretes
 
         [Required(ErrorMessage = "You must enter an email.")]
         [StringLength(50, MinimumLength = 13)]
-        public int Email { get; set; }
+        public string Email { get; set; }
 
 
         public int CompanyID { get; set; }

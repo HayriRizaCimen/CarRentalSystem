@@ -53,9 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\IRepository.cs" />
-    <Compile Include="Concretes\CustomersRepository.cs" />
-    <Compile Include="EntityFramework\DataContext.cs" />
-    <Compile Include="EntityFramework\Initializer.cs" />
+    <Compile Include="Concretes\CarRepository.cs" />
+    <Compile Include="Concretes\CompanyRepository.cs" />
+    <Compile Include="Concretes\CustomerRepository.cs" />
+    <Compile Include="Concretes\EmployeeRepository.cs" />
+    <Compile Include="Concretes\RentInfoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

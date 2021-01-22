@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental", "CarRental\CarRental.csproj", "{949689FD-71AE-4A72-8A0D-A5865F219662}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental_sil_!!!", "CarRental\CarRental_sil_!!!.csproj", "{949689FD-71AE-4A72-8A0D-A5865F219662}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.BusinessLogic", "CarRental.BusinessLogic\CarRental.BusinessLogic.csproj", "{54C3F8EE-6343-4D0A-B443-672610E14B68}"
 EndProject

@@ -12,15 +12,15 @@ using CarRental.Entity.Concretes;
 
 namespace CarRental.DataAcces.Concretes
 {
-    public class CustomersRepository : IRepository<Customer>
+    public class CustomerRepository : IRepository<Customer>
     {
-        /// //////////////////////////////////////// ///
+        
         private string _connectionString;
         private string _dbProviderName;
         private DbProviderFactory _dbProviderFactory;
         private int _rowsAffected, _errorCode;
 
-        public CustomersRepository()
+        public CustomerRepository()
         {
             _connectionString = DBHelper.GetConnectionString();
             _dbProviderName = DBHelper.GetConnectionProvider();
@@ -86,7 +86,7 @@ namespace CarRental.DataAcces.Concretes
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("CustomersRepository::Insert:Error occured.", ex);
+                throw new Exception("CustomerRepository::Insert:Error occured.", ex);
             }
 
         }
@@ -129,8 +129,8 @@ namespace CarRental.DataAcces.Concretes
                         //Input Params
                         DBHelper.AddParameter(dbCommand, "@CustomerName", CsType.String, ParameterDirection.Input, entity.CustomerName);
                         DBHelper.AddParameter(dbCommand, "@CustomerSurname", CsType.String, ParameterDirection.Input, entity.CustomerSurname);
-                        DBHelper.AddParameter(dbCommand, "@CustomerPasskey", CsType.Int, ParameterDirection.Input, entity.PhoneNumber);
-                        DBHelper.AddParameter(dbCommand, "@Balance", CsType.String, ParameterDirection.Input, entity.Email);
+                        DBHelper.AddParameter(dbCommand, "@PhoneNumber", CsType.Int, ParameterDirection.Input, entity.PhoneNumber);
+                        DBHelper.AddParameter(dbCommand, "@Email", CsType.String, ParameterDirection.Input, entity.Email);
 
                         //Output Params
                         DBHelper.AddParameter(dbCommand, "@intErrorCode", CsType.Int, ParameterDirection.Output, null);
@@ -152,7 +152,7 @@ namespace CarRental.DataAcces.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("CustomersRepository::Insert:Error occured.", ex);
+                throw new Exception("CustomerRepository::Insert:Error occured.", ex);
             }
 
         }
@@ -170,12 +170,11 @@ namespace CarRental.DataAcces.Concretes
             {
 
                 var query = new StringBuilder();
-                query.Append("INSERT [dbo].[tbl_Customers] ");
-                query.Append("( [CustomerName], [CustomerSurname], [PhoneNumber], [Email] ) ");
-                query.Append("VALUES ");
+                query.Append("SELECT ");
                 query.Append(
-                    "( @CustomerName, @CustomerSurname, @PhoneNumber, @Email ) ");
-                query.Append("SELECT @intErrorCode=@@ERROR;");
+                    "[CustomerID], [CustomerName], [CustomerSurname], [PhoneNumber], [Email] ) ");
+                query.Append("FROM [dbo].[tbl_Customers] ");
+                query.Append("SELECT @intErrorCode=@@ERROR; ");
 
 
                 var commandText = query.ToString();
@@ -241,7 +240,7 @@ namespace CarRental.DataAcces.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("CustomersRepository::SelectAll:Error occured.", ex);
+                throw new Exception("CustomerRepository::SelectAll:Error occured.", ex);
             }
         }
 
@@ -330,7 +329,7 @@ namespace CarRental.DataAcces.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("CustomersRepository::SelectById:Error occured.", ex);
+                throw new Exception("CustomerRepository::SelectById:Error occured.", ex);
             }
         }
 
@@ -395,7 +394,7 @@ namespace CarRental.DataAcces.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("CustomersRepository::Update:Error occured.", ex);
+                throw new Exception("CustomerRepository::Update:Error occured.", ex);
             }
         }
 

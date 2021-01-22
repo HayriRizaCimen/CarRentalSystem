@@ -18,7 +18,7 @@ namespace CarRental.Entity.Concretes
         public string CarName { get; set; }
 
         [Required(ErrorMessage = "You must enter a car model.")]
-        public string CarModel { get; set; }
+        public int CarModel { get; set; }
 
         [Required(ErrorMessage = "You must enter a rent fee.")]
         public int RentFeeDaily { get; set; }
@@ -28,9 +28,8 @@ namespace CarRental.Entity.Concretes
 
         [Required(ErrorMessage = "You must enter seats.")]
         public int CarTotalSeats { get; set; }
-
        
-        public int isRent { get; set; }
+        public bool isRent { get; set; }
 
         public int CompanyID { get; set; }
         public Company Company { get; set; }
