@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Common;
-using System.Linq;
 using System.Text;
 using CarRental.Commons.Concretes.Data;
 using CarRental.Commons.Concretes.Helpers;
@@ -12,19 +10,41 @@ using CarRental.Entity.Concretes;
 
 namespace CarRental.DataAcces.Concretes
 {
-    public class CarRepository : IRepository<Car>
+    public class CarRepository : IRepository<Car>, IDisposable
     {
 
         private string _connectionString;
         private string _dbProviderName;
         private DbProviderFactory _dbProviderFactory;
         private int _rowsAffected, _errorCode;
+        private bool _bDisposed;
 
         public CarRepository()
         {
             _connectionString = DBHelper.GetConnectionString();
             _dbProviderName = DBHelper.GetConnectionProvider();
             _dbProviderFactory = DbProviderFactories.GetFactory(_dbProviderName);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool bDisposing)
+        {
+            // Check the Dispose method called before.
+            if (!_bDisposed)
+            {
+                if (bDisposing)
+                {
+                    // Clean the resources used.
+                    _dbProviderFactory = null;
+                }
+
+                _bDisposed = true;
+            }
         }
 
 
