@@ -194,7 +194,7 @@ namespace CarRental.DataAcces.Concretes
                 var query = new StringBuilder();
                 query.Append("SELECT ");
                 query.Append(
-                    "[CustomerID], [CustomerName], [CustomerSurname], [PhoneNumber], [Email] ) ");
+                    "[CustomerID], [CustomerName], [CustomerSurname], [PhoneNumber], [Email] ");
                 query.Append("FROM [dbo].[tbl_Customers] ");
                 query.Append("SELECT @intErrorCode=@@ERROR; ");
 

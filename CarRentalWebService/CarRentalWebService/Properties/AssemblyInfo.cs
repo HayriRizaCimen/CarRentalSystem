@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Bir derlemeyle ilgili Genel Bilgiler aşağıdaki öznitelik kümesi kullanılarak 
 // denetlenir. Bir derlemeyle ilişkilendirilmiş bilgileri değiştirmek için bu
 // öznitelik değerlerini değiştirin.
-[assembly: AssemblyTitle("CarRental")]
+[assembly: AssemblyTitle("CarRentalWebService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CarRental")]
+[assembly: AssemblyProduct("CarRentalWebService")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Bu proje COM'a açılmışsa aşağıdaki GUID typelib'in ID'si içindir
-[assembly: Guid("949689fd-71ae-4a72-8a0d-a5865f219662")]
+[assembly: Guid("d876b439-5d28-4ce5-8235-21dc6ed7bfd6")]
 
 // Bir derlemenin sürüm bilgisi aşağıdaki dört değerden oluşur:
 //
