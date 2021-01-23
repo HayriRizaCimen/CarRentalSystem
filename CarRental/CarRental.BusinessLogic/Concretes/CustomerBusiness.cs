@@ -5,14 +5,14 @@ using CarRental.Entity.Concretes;
 
 namespace CarRental.BusinessLogic.Concretes
 {
-    public class CarBusiness : IDisposable
+    public class CustomerBusiness : IDisposable
     {
-        public bool InsertCar(Car entity)
+        public bool InsertCustomer(Customer entity)
         {
             try
             {
                 bool isSuccess;
-                using (var repo = new CarRepository())
+                using (var repo = new CustomerRepository())
                 {
                     isSuccess = repo.Insert(entity);
                 }
@@ -20,17 +20,17 @@ namespace CarRental.BusinessLogic.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("BusinessLogic:CarBusiness::InsertCar::Error occured.", ex);
+                throw new Exception("BusinessLogic:CustomerBusiness::InsertCustomer::Error occured.", ex);
             }
         }
 
 
-        public bool UpdateCar(Car entity)
+        public bool UpdateCustomer(Customer entity)
         {
             try
             {
                 bool isSuccess;
-                using (var repo = new CarRepository())
+                using (var repo = new CustomerRepository())
                 {
                     isSuccess = repo.Update(entity);
                 }
@@ -38,16 +38,16 @@ namespace CarRental.BusinessLogic.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("BusinessLogic:CarBusiness::UpdateCar::Error occured.", ex);
+                throw new Exception("BusinessLogic:CustomerBusiness::UpdateCustomer::Error occured.", ex);
             }
         }
 
-        public bool DeleteCarById(int ID)
+        public bool DeleteCustomerById(int ID)
         {
             try
             {
                 bool isSuccess;
-                using (var repo = new CarRepository())
+                using (var repo = new CustomerRepository())
                 {
                     isSuccess = repo.DeletedById(ID);
                 }
@@ -55,36 +55,36 @@ namespace CarRental.BusinessLogic.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("BusinessLogic:CarBusiness::DeleteCar::Error occured.", ex);
+                throw new Exception("BusinessLogic:CustomerBusiness::DeleteCustomer::Error occured.", ex);
             }
         }
 
-        public Car SelectCarById(int carId)
+        public Customer SelectCustomerById(int customerId)
         {
             try
             {
-                Car responseEntitiy;
-                using (var repo = new CarRepository())
+                Customer responseEntitiy;
+                using (var repo = new CustomerRepository())
                 {
-                    responseEntitiy = repo.SelectedById(carId);
+                    responseEntitiy = repo.SelectedById(customerId);
                     if (responseEntitiy == null)
-                        throw new NullReferenceException("Car doesnt exists!");
+                        throw new NullReferenceException("Customer doesnt exists!");
                 }
                 return responseEntitiy;
             }
             catch (Exception ex)
             {
-                throw new Exception("BusinessLogic:CarBusiness::SelectCarById::Error occured.", ex);
+                throw new Exception("BusinessLogic:CustomerBusiness::SelectCustomerById::Error occured.", ex);
             }
         }
 
-        public List<Car> SelectAllCars()
+        public List<Customer> SelectAllCustomers()
         {
-            var responseEntities = new List<Car>();
+            var responseEntities = new List<Customer>();
 
             try
             {
-                using (var repo = new CarRepository())
+                using (var repo = new CustomerRepository())
                 {
                     foreach (var entity in repo.SelectAll())
                     {
@@ -95,11 +95,11 @@ namespace CarRental.BusinessLogic.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("BusinessLogic:CarBusiness::SelectAllCars::Error occured.", ex);
+                throw new Exception("BusinessLogic:CustomerBusiness::SelectAllCustomers::Error occured.", ex);
             }
         }
 
-        public CarBusiness()
+        public CustomerBusiness()
         {
 
         }

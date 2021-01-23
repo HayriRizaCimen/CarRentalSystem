@@ -42,7 +42,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concretes\CarBusiness.cs" />
+    <Compile Include="Concretes\CompanyBusiness.cs" />
+    <Compile Include="Concretes\CustomerBusiness.cs" />
+    <Compile Include="Concretes\EmployeeBusiness.cs" />
+    <Compile Include="Concretes\RentInfoBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarRental.Commons\CarRental.Commons.csproj">
+      <Project>{f1fd9e8c-b419-4da4-8c55-e5f55fecc919}</Project>
+      <Name>CarRental.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarRental.DataAcces\CarRental.DataAcces.csproj">
+      <Project>{8f524351-923a-446e-8ee6-7c8b48eea01d}</Project>
+      <Name>CarRental.DataAcces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarRental.Entity\CarRental.Entity.csproj">
+      <Project>{99457d30-e2ef-4360-a6a7-1af9a24ae4af}</Project>
+      <Name>CarRental.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

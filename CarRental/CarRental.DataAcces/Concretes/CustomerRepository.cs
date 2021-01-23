@@ -12,19 +12,41 @@ using CarRental.Entity.Concretes;
 
 namespace CarRental.DataAcces.Concretes
 {
-    public class CustomerRepository : IRepository<Customer>
+    public class CustomerRepository : IRepository<Customer>, IDisposable
     {
         
         private string _connectionString;
         private string _dbProviderName;
         private DbProviderFactory _dbProviderFactory;
         private int _rowsAffected, _errorCode;
+        private bool _bDisposed;
 
         public CustomerRepository()
         {
             _connectionString = DBHelper.GetConnectionString();
             _dbProviderName = DBHelper.GetConnectionProvider();
             _dbProviderFactory = DbProviderFactories.GetFactory(_dbProviderName);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool bDisposing)
+        {
+            // Check the Dispose method called before.
+            if (!_bDisposed)
+            {
+                if (bDisposing)
+                {
+                    // Clean the resources used.
+                    _dbProviderFactory = null;
+                }
+
+                _bDisposed = true;
+            }
         }
 
 

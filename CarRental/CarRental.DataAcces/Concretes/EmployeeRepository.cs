@@ -12,13 +12,15 @@ using CarRental.Entity.Concretes;
 
 namespace CarRental.DataAcces.Concretes
 {
-    public class EmployeeRepository : IRepository<Employee>
+    public class EmployeeRepository : IRepository<Employee>, IDisposable
     {
 
         private string _connectionString;
         private string _dbProviderName;
         private DbProviderFactory _dbProviderFactory;
         private int _rowsAffected, _errorCode;
+        private bool _bDisposed;
+
 
         public EmployeeRepository()
         {
@@ -28,6 +30,26 @@ namespace CarRental.DataAcces.Concretes
 
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool bDisposing)
+        {
+            // Check the Dispose method called before.
+            if (!_bDisposed)
+            {
+                if (bDisposing)
+                {
+                    // Clean the resources used.
+                    _dbProviderFactory = null;
+                }
+
+                _bDisposed = true;
+            }
+        }
 
 
         public bool DeletedById(int id)
