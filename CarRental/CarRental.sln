@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Entity", "CarRent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Commons", "CarRental.Commons\CarRental.Commons.csproj", "{F1FD9E8C-B419-4DA4-8C55-E5F55FECC919}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.AspNetWeb.Pure", "CarRental.AspNetWeb.Pure\CarRental.AspNetWeb.Pure.csproj", "{E88051BF-7665-4517-84EC-6C0FA239E7FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F1FD9E8C-B419-4DA4-8C55-E5F55FECC919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1FD9E8C-B419-4DA4-8C55-E5F55FECC919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1FD9E8C-B419-4DA4-8C55-E5F55FECC919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88051BF-7665-4517-84EC-6C0FA239E7FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88051BF-7665-4517-84EC-6C0FA239E7FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88051BF-7665-4517-84EC-6C0FA239E7FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88051BF-7665-4517-84EC-6C0FA239E7FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
