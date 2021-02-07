@@ -10,6 +10,10 @@ namespace CarRental.Entity.Concretes
 {
     public class Customer
     {
+        public Customer()
+        {
+            RentInfos = new List<RentInfo>();
+        }
 
         public int CustomerID { get; set; }
 
@@ -29,6 +33,7 @@ namespace CarRental.Entity.Concretes
         [StringLength(50, MinimumLength = 13)]
         public string Email { get; set; }
 
+        public List<RentInfo> RentInfos { get; set; }
 
     }
 }

@@ -2,10 +2,6 @@
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CarRental.Commons.Concretes.Data;
 
 
@@ -13,6 +9,7 @@ namespace CarRental.Commons.Concretes.Helpers
 {
     public static class DBHelper
     {
+
         // Get connection string from .config file.
         public static string GetConnectionString()
         {
