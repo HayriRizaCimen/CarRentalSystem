@@ -17,7 +17,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
         }
 
 
-        // GET: Car/Details/5
+        // GET: Car/Details/1
         public ActionResult Details(int id)
         {
             return View(SelectCarByID(id));
@@ -42,7 +42,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
             try
             {
-                if (InsertCar(collection["CarName"], collection["CarModel"], int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"]) ))
+                if (InsertCar(collection["CarName"], int.Parse(collection["CarModel"]), int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"]) ))
                     return RedirectToAction("ListAll");
 
                 return View();
@@ -81,7 +81,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
             try
             {
-                if (UpdateCar(id, collection["CarName"], collection["CarModel"], int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"]))
+                if (UpdateCar(id, collection["CarName"], int.Parse(collection["CarModel"]), int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"])))
                     return RedirectToAction("Index");
 
                 return View();
@@ -124,7 +124,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
 
         #region PRIVATE METHODS
 
-        private bool InsertCar(string name, string surname, int number, string email)
+        private bool InsertCar(string name, int model, int rentFee, int totalKM, int totalSeats, int companyID)
         {
             try
             {
@@ -133,9 +133,11 @@ namespace CarRental.AspNetWeb.Pure.Controllers
                     return carBussines.InsertCar(new Car()
                     {
                         CarName = name,
-                        CarSurname = surname,
-                        PhoneNumber = number,
-                        Email = email
+                        CarModel = model,
+                        RentFeeDaily = rentFee,
+                        CarTotalKM = totalKM,
+                        CarTotalSeats = totalSeats,
+                        CompanyID= companyID
                     });
                 }
             }
@@ -146,7 +148,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
         }
 
-        private bool UpdateCar(int id, string name, string surname, int number, string email)
+        private bool UpdateCar(int id, string name, int model, int rentFee, int totalKM, int totalSeats, int companyID)
         {
             try
             {
@@ -156,9 +158,11 @@ namespace CarRental.AspNetWeb.Pure.Controllers
                     {
                         CarID = id,
                         CarName = name,
-                        CarSurname = surname,
-                        PhoneNumber = number,
-                        Email = email
+                        CarModel = model,
+                        RentFeeDaily = rentFee,
+                        CarTotalKM = totalKM,
+                        CarTotalSeats = totalSeats,
+                        CompanyID = companyID
                     });
                 }
             }
@@ -219,19 +223,6 @@ namespace CarRental.AspNetWeb.Pure.Controllers
         }
 
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
