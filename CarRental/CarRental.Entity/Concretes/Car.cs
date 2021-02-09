@@ -2,10 +2,9 @@
 
 namespace CarRental.Entity.Concretes
 {
-    //[Table("Cars")]
+    
     public class Car
     {
-        //[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CarID { get; set; }
 
         [Required(ErrorMessage = "You must enter a car name.")]

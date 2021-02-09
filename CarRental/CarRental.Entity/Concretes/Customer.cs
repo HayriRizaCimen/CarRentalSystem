@@ -10,12 +10,9 @@ namespace CarRental.Entity.Concretes
 {
     public class Customer
     {
-        public Customer()
-        {
-            RentInfos = new List<RentInfo>();
-        }
-
+      
         public int CustomerID { get; set; }
+
 
         [Required(ErrorMessage = "You must enter a name.")]
         [StringLength(50, MinimumLength = 3)]
@@ -35,5 +32,9 @@ namespace CarRental.Entity.Concretes
 
         public List<RentInfo> RentInfos { get; set; }
 
+        public Customer()
+        {
+            RentInfos = new List<RentInfo>();
+        }
     }
 }

@@ -109,7 +109,7 @@ namespace CarRental.DataAcces.Concretes
             }
             catch (Exception ex)
             {
-                throw new Exception("EmployeeRepository::Insert:Error occured.", ex);
+                throw new Exception("EmployeeRepository::Delete:Error occured.", ex);
             }
 
         }

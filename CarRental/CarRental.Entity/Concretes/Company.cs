@@ -21,11 +21,9 @@ namespace CarRental.Entity.Concretes
         public string City { get; set; }
 
         [Required(ErrorMessage = "You must enter an adress.")]
-        [StringLength(50, MinimumLength = 10)]
+        [StringLength(50, MinimumLength = 5)]
         public string Address { get; set; }
-
-        [Required(ErrorMessage = "You must enter number of total cars.")]
-        [StringLength(50, MinimumLength = 3)]
+        
         public int TotalCars { get; set; }
 
         public List<Car> Cars { get; set; }
