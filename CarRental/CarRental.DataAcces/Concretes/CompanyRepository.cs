@@ -186,7 +186,7 @@ namespace CarRental.DataAcces.Concretes
             _errorCode = 0;
             _rowsAffected = 0;
 
-            IList<Company> company = new List<Company>();
+            IList<Company> companies = new List<Company>();
 
             try
             {
@@ -195,7 +195,7 @@ namespace CarRental.DataAcces.Concretes
                 query.Append("SELECT ");
                 query.Append(
                     "[CompanyID], [CompanyName], [City], [Address], [TotalCars] ");
-                query.Append("FROM [dbo].[tbl_Cars] ");
+                query.Append("FROM [dbo].[tbl_Companies] ");
                 query.Append("SELECT @intErrorCode=@@ERROR; ");
 
 
@@ -241,7 +241,7 @@ namespace CarRental.DataAcces.Concretes
                                     entity.City = reader.GetString(2);
                                     entity.Address = reader.GetString(3);
                                     entity.TotalCars = reader.GetInt32(4);
-                                    company.Add(entity);
+                                    companies.Add(entity);
                                 }
                             }
 
@@ -252,13 +252,13 @@ namespace CarRental.DataAcces.Concretes
                         if (_errorCode != 0)
                         {
                             // Throw error.
-                            throw new Exception("Selecting All Error for entity [tbl_Customer] reported the Database ErrorCode: " + _errorCode);
+                            throw new Exception("Selecting All Error for entity [tbl_Companies] reported the Database ErrorCode: " + _errorCode);
 
                         }
                     }
                 }
                 // Return list
-                return company;
+                return companies;
             }
             catch (Exception ex)
             {
