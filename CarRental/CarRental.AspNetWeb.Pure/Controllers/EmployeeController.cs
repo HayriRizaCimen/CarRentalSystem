@@ -2,36 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Car = CarRental.Entity.Concretes.Car;
+using Employee = CarRental.Entity.Concretes.Employee;
 using CarRental.BusinessLogic.Concretes;
 
 namespace CarRental.AspNetWeb.Pure.Controllers
 {
-    public class CarController : Controller
+    public class EmployeeController : Controller
     {
 
-        // GET: Car
+        // GET: Employee
         public ActionResult Index()
         {
             return View();
         }
 
 
-        // GET: Car/Details/1
+        // GET: Employee/Details/1
         public ActionResult Details(int id)
         {
-            return View(SelectCarByID(id));
+            return View(SelectEmployeeByID(id));
         }
 
 
-        // GET: Car/Create
+        // GET: Employee/Create
         public ActionResult Create()
         {
             return View();
         }
 
 
-        // POST: Car/Create
+        // POST: Employee/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
@@ -42,7 +42,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
             try
             {
-                if (InsertCar(collection["CarName"], int.Parse(collection["CarModel"]), int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"]) ))
+                if (InsertEmployee(collection["EmployeeName"], collection["EmployeeSurname"], collection["Email"], int.Parse(collection["CompanyID"]) ))
                     return RedirectToAction("ListAll");
 
                 return View();
@@ -50,28 +50,28 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             catch (Exception ex)
             {
                 // LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("AspNetWeb.Pure::CarController::CreateCar::Error occured.", ex);
+                throw new Exception("AspNetWeb.Pure::EmployeeController::CreateEmployee::Error occured.", ex);
                 //return View();
             }
         }
 
 
 
-        // GET: Car/Edit/5
+        // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
             try
             {
-                return View(SelectCarByID(id));
+                return View(SelectEmployeeByID(id));
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("Employee doesn't exists.", ex);
             }
         }
 
-        // POST: Car/Edit/5
+        // POST: Employee/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -81,7 +81,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
             try
             {
-                if (UpdateCar(id, collection["CarName"], int.Parse(collection["CarModel"]), int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"])))
+                if (UpdateEmployee(id, collection["EmployeeName"], collection["EmployeeSurname"], collection["Email"], int.Parse(collection["CompanyID"])))
                     return RedirectToAction("Index");
 
                 return View();
@@ -92,12 +92,12 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
         }
 
-        // GET: Car/Delete/5
+        // GET: Employee/Delete/5
         public ActionResult Delete(int id)
         {
             try
             {
-                if (DeleteCar(id))
+                if (DeleteEmployee(id))
                     return RedirectToAction("ListAll");
                 return RedirectToAction("ListAll");
             }
@@ -112,56 +112,29 @@ namespace CarRental.AspNetWeb.Pure.Controllers
         {
             try
             {
-                IList<Car> cars = ListAllCars().ToList();
-                return View(cars);
+                IList<Employee> employee = ListAllEmployees().ToList();
+                return View(employee);
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("Employee doesn't exists.", ex);
             }
         }
 
         #region PRIVATE METHODS
 
-        private bool InsertCar(string name, int model, int rentFee, int totalKM, int totalSeats, int companyID)
+        private bool InsertEmployee(string name, string surname, string email, int companyID)
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var employeeBussines = new EmployeeBusiness())
                 {
-                    return carBussines.InsertCar(new Car()
+                    return employeeBussines.InsertEmployee(new Employee()
                     {
-                        CarName = name,
-                        CarModel = model,
-                        RentFeeDaily = rentFee,
-                        CarTotalKM = totalKM,
-                        CarTotalSeats = totalSeats,
-                        CompanyID= companyID
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
-            }
-        }
-
-        private bool UpdateCar(int id, string name, int model, int rentFee, int totalKM, int totalSeats, int companyID)
-        {
-            try
-            {
-                using (var carBussines = new CarBusiness())
-                {
-                    return carBussines.UpdateCar(new Car()
-                    {
-                        CarID = id,
-                        CarName = name,
-                        CarModel = model,
-                        RentFeeDaily = rentFee,
-                        CarTotalKM = totalKM,
-                        CarTotalSeats = totalSeats,
+                        EmployeeName = name,
+                        EmployeeSurname = surname,
+                        Email = email,
                         CompanyID = companyID
                     });
                 }
@@ -169,56 +142,79 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("Employee doesn't exists.", ex);
             }
         }
 
-        private bool DeleteCar(int ID)
+        private bool UpdateEmployee(int id, string name, string surname, string email, int companyID)
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var employeeBussines = new EmployeeBusiness())
                 {
-                    return carBussines.DeleteCarById(ID);
+                    return employeeBussines.UpdateEmployee(new Employee()
+                    {
+                        EmployeeID = id,
+                        EmployeeName = name,
+                        EmployeeSurname = surname,
+                        Email = email,
+                        CompanyID = companyID
+                    });
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("Employee doesn't exists.", ex);
             }
         }
 
-        private List<Car> ListAllCars()
+        private bool DeleteEmployee(int ID)
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var employeeBussines = new EmployeeBusiness())
                 {
-                    List<Car> cars = carBussines.SelectAllCars();
-                    return cars;
+                    return employeeBussines.DeleteEmployeeById(ID);
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("Employee doesn't exists.", ex);
             }
         }
 
-        private Car SelectCarByID(int ID)
+        private List<Employee> ListAllEmployees()
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var employeeBussines = new EmployeeBusiness())
                 {
-                    return carBussines.SelectCarById(ID);
+                    List<Employee> employee = employeeBussines.SelectAllEmployees();
+                    return employee;
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("Employee doesn't exists.", ex);
+            }
+        }
+
+        private Employee SelectEmployeeByID(int ID)
+        {
+            try
+            {
+                using (var employeeBussines = new EmployeeBusiness())
+                {
+                    return employeeBussines.SelectEmployeeById(ID);
+                }
+            }
+            catch (Exception ex)
+            {
+                //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
+                throw new Exception("Employee doesn't exists.", ex);
             }
         }
 

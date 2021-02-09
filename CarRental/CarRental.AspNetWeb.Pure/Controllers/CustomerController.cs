@@ -50,7 +50,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             catch (Exception ex)
             {
                 // LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("AspNetWeb.Pure::CustomerController::InsertCustomer::Error occured.", ex);
+                throw new Exception("AspNetWeb.Pure::CustomerController::CreateCustomer::Error occured.", ex);
                 //return View();
             }
         }

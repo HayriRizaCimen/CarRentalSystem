@@ -2,36 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Car = CarRental.Entity.Concretes.Car;
+using RentInfo = CarRental.Entity.Concretes.RentInfo;
 using CarRental.BusinessLogic.Concretes;
 
 namespace CarRental.AspNetWeb.Pure.Controllers
 {
-    public class CarController : Controller
+    public class RentInfoController : Controller
     {
 
-        // GET: Car
+        // GET: RentInfo
         public ActionResult Index()
         {
             return View();
         }
 
 
-        // GET: Car/Details/1
+        // GET: RentInfo/Details/1
         public ActionResult Details(int id)
         {
-            return View(SelectCarByID(id));
+            return View(SelectRentInfoByID(id));
         }
 
 
-        // GET: Car/Create
+        // GET: RentInfo/Create
         public ActionResult Create()
         {
             return View();
         }
 
 
-        // POST: Car/Create
+        // POST: RentInfo/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
@@ -42,7 +42,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
             try
             {
-                if (InsertCar(collection["CarName"], int.Parse(collection["CarModel"]), int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"]) ))
+                if (InsertRentInfo(DateTime.Parse(collection["RentDateStart"]), DateTime.Parse(collection["RentDateEnd"]), int.Parse(collection["FirstKM"]), int.Parse(collection["LastKM"]), int.Parse(collection["TotalRentalFee"]), int.Parse(collection["CarID"]) ))
                     return RedirectToAction("ListAll");
 
                 return View();
@@ -50,28 +50,28 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             catch (Exception ex)
             {
                 // LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("AspNetWeb.Pure::CarController::CreateCar::Error occured.", ex);
+                throw new Exception("AspNetWeb.Pure::RentInfoController::CreateRentInfo::Error occured.", ex);
                 //return View();
             }
         }
 
 
 
-        // GET: Car/Edit/5
+        // GET: RentInfo/Edit/5
         public ActionResult Edit(int id)
         {
             try
             {
-                return View(SelectCarByID(id));
+                return View(SelectRentInfoByID(id));
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("RentInfo doesn't exists.", ex);
             }
         }
 
-        // POST: Car/Edit/5
+        // POST: RentInfo/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -81,7 +81,7 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
             try
             {
-                if (UpdateCar(id, collection["CarName"], int.Parse(collection["CarModel"]), int.Parse(collection["RentFeeDaily"]), int.Parse(collection["CarTotalKM"]), int.Parse(collection["CarTotalSeats"]), int.Parse(collection["CompanyID"])))
+                if (UpdateRentInfo(id, DateTime.Parse(collection["RentDateStart"]), DateTime.Parse(collection["RentDateEnd"]), int.Parse(collection["FirstKM"]), int.Parse(collection["LastKM"]), int.Parse(collection["TotalRentalFee"]), int.Parse(collection["CarID"])))
                     return RedirectToAction("Index");
 
                 return View();
@@ -92,12 +92,12 @@ namespace CarRental.AspNetWeb.Pure.Controllers
             }
         }
 
-        // GET: Car/Delete/5
+        // GET: RentInfo/Delete/5
         public ActionResult Delete(int id)
         {
             try
             {
-                if (DeleteCar(id))
+                if (DeleteRentInfo(id))
                     return RedirectToAction("ListAll");
                 return RedirectToAction("ListAll");
             }
@@ -112,113 +112,113 @@ namespace CarRental.AspNetWeb.Pure.Controllers
         {
             try
             {
-                IList<Car> cars = ListAllCars().ToList();
-                return View(cars);
+                IList<RentInfo> rentInfos = ListAllRentInfos().ToList();
+                return View(rentInfos);
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("RentInfo doesn't exists.", ex);
             }
         }
 
         #region PRIVATE METHODS
 
-        private bool InsertCar(string name, int model, int rentFee, int totalKM, int totalSeats, int companyID)
+        private bool InsertRentInfo(DateTime rentDateStart, DateTime rentDateEnd, int firstKM, int lastKM, int totalFee, int carID)
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var carBussines = new RentInfoBusiness())
                 {
-                    return carBussines.InsertCar(new Car()
+                    return carBussines.InsertRentInfo(new RentInfo()
                     {
-                        CarName = name,
-                        CarModel = model,
-                        RentFeeDaily = rentFee,
-                        CarTotalKM = totalKM,
-                        CarTotalSeats = totalSeats,
-                        CompanyID= companyID
+                        RentDateStart = rentDateStart,
+                        RentDateEnd = rentDateEnd,
+                        FirstKM = firstKM,
+                        LastKM = lastKM,
+                        TotalRentalFee = totalFee,
+                        CarID = carID
                     });
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("RentInfo doesn't exists.", ex);
             }
         }
 
-        private bool UpdateCar(int id, string name, int model, int rentFee, int totalKM, int totalSeats, int companyID)
+        private bool UpdateRentInfo(int id, DateTime rentDateStart, DateTime rentDateEnd, int firstKM, int lastKM, int totalFee, int carID)
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var carBussines = new RentInfoBusiness())
                 {
-                    return carBussines.UpdateCar(new Car()
+                    return carBussines.UpdateRentInfo(new RentInfo()
                     {
-                        CarID = id,
-                        CarName = name,
-                        CarModel = model,
-                        RentFeeDaily = rentFee,
-                        CarTotalKM = totalKM,
-                        CarTotalSeats = totalSeats,
-                        CompanyID = companyID
+                        RentID = id,
+                        RentDateStart = rentDateStart,
+                        RentDateEnd = rentDateEnd,
+                        FirstKM = firstKM,
+                        LastKM = lastKM,
+                        TotalRentalFee = totalFee,
+                        CarID = carID
                     });
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("RentInfo doesn't exists.", ex);
             }
         }
 
-        private bool DeleteCar(int ID)
+        private bool DeleteRentInfo(int ID)
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var carBussines = new RentInfoBusiness())
                 {
-                    return carBussines.DeleteCarById(ID);
+                    return carBussines.DeleteRentInfoById(ID);
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("RentInfo doesn't exists.", ex);
             }
         }
 
-        private List<Car> ListAllCars()
+        private List<RentInfo> ListAllRentInfos()
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var carBussines = new RentInfoBusiness())
                 {
-                    List<Car> cars = carBussines.SelectAllCars();
+                    List<RentInfo> cars = carBussines.SelectAllRentInfos();
                     return cars;
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("RentInfo doesn't exists.", ex);
             }
         }
 
-        private Car SelectCarByID(int ID)
+        private RentInfo SelectRentInfoByID(int ID)
         {
             try
             {
-                using (var carBussines = new CarBusiness())
+                using (var carBussines = new RentInfoBusiness())
                 {
-                    return carBussines.SelectCarById(ID);
+                    return carBussines.SelectRentInfoById(ID);
                 }
             }
             catch (Exception ex)
             {
                 //LogHelper.Log(LogTarget.File, ExceptionHelper.ExceptionToString(ex), true);
-                throw new Exception("Car doesn't exists.", ex);
+                throw new Exception("RentInfo doesn't exists.", ex);
             }
         }
 
