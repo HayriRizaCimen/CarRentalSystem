@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CarRental.Entity.Concretes.RentInfo>
+
+@{ ViewBag.Title = "All Rent Infos"; }
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Encode("Rent Date Start")
+        </th>
+        <th>
+            @Html.Encode("Rent Date End")
+        </th>
+        <th>
+            @Html.Encode("First KM")
+        </th>
+        <th>
+            @Html.Encode("Last KM")
+        </th>
+        <th>
+            @Html.Encode("Total Rental Fee")
+        </th>
+        <th>
+            @Html.Encode("Car ID")
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.RentDateStart)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RentDateEnd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstKM)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastKM)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TotalRentalFee)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CarID)
+    </td>
+
+    <td>
+        @Html.ActionLink("Detail", "Details", new { id = item.RentID }) |
+        @Html.ActionLink("Edit", "Edit", new { id = item.RentID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.RentID })
+    </td>
+</tr>}
+
+</table>

@@ -1,0 +1,86 @@
+﻿@using System.Activities.Statements
+@using System.Runtime.Remoting.Messaging
+@model CarRental.Entity.Concretes.RentInfo
+
+@{ ViewBag.Title = "Details"; }
+
+<h2>Details</h2>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RentDateStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentDateStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentDateEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentDateEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalRentalFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalRentalFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarID)
+        </dd>
+
+    </dl>
+</div>
+@*<div>
+    <h4>Rent Infos</h4>
+    <hr />
+    @foreach (var item in Model.isRent)
+    {
+<dl class="dl-horizontal">
+    <dt>
+        @Html.Raw("Rent Infos")
+    </dt>
+
+    <dt>
+        @Html.Raw("Rent Dates:")
+    </dt>
+
+    <dd>
+        @Html.Raw("Start: " +item.RentDateStart.ToLongDateString() + "      End: " + item.RentDateEnd.ToLongTimeString())
+    </dd>
+</dl>}
+</div>*@
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarID }) |
+    @Html.ActionLink("Back to List", "ListAll")
+</p>
